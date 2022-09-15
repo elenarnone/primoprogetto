@@ -1,0 +1,229 @@
+LINEA GUIDA GIT
+1)creare il progetto in gitlab
+2) tramite la linea di comando clonare il progetto sul tuo locale
+
+	C:\Users\elena>cd ..(uscita nel cartella)
+	C:\Users>cd ..(uscita nel cartella)
+	C:\>CD GIT (entrata nel cartella)
+	C:\GIT>git clone git@git.thebusinessgame.it:elena.arnone/primoprogetto.git primoprogetto
+	Cloning into 'primoprogetto'...
+	remote: Enumerating objects: 6, done.
+	remote: Counting objects: 100% (6/6), done.
+	remote: Compressing objects: 100% (2/2), done.
+	remote: Total 6 (delta 0), reused 0 (delta 0)
+	Receiving objects: 100% (6/6), done.
+	
+3) avendo scritto un file se lo vuoi commit nel tuo locale
+	C:\GIT>cd primoprogetto (entrata nel cartella)
+
+	C:\GIT\primoprogetto>git status
+	On branch master
+	Your branch is up to date with 'origin/master'.
+
+	Untracked files:
+	  (use "git add <file>..." to include in what will be committed) (BISOGNA AGGIUNGERE IL FILE SE LO VUOI COMMIT)
+
+			first.html
+
+	nothing added to commit but untracked files present (use "git add" to track)
+	C:\GIT\primoprogetto>git add first.html
+
+	C:\GIT\primoprogetto>git status
+	On branch master
+	Your branch is up to date with 'origin/master'.
+
+	Changes to be committed:
+	  (use "git reset HEAD <file>..." to unstage) (COMANDO USATO SE VUOI ELIMINARE IL FILE)
+
+			new file:   first.html
+	
+	C:\GIT\primoprogetto>git commit -m "paginahtml"
+	[master 1b6a1cb] paginahtml
+	 1 file changed, 7 insertions(+)
+	 create mode 100644 first.html 
+
+4) PUBBLICARE IL FILE SUL SERVER
+
+	C:\GIT\primoprogetto>git status
+	On branch master
+	Your branch is ahead of 'origin/master' by 1 commit.
+	  (use "git push" to publish your local commits)
+
+	nothing to commit, working tree clean
+
+	C:\GIT\primoprogetto>git push
+	Enumerating objects: 4, done.
+	Counting objects: 100% (4/4), done.
+	Delta compression using up to 4 threads
+	Compressing objects: 100% (3/3), done.
+	Writing objects: 100% (3/3), 320 bytes | 80.00 KiB/s, done.
+	Total 3 (delta 0), reused 0 (delta 0)
+	To git.thebusinessgame.it:elena.arnone/primoprogetto.git
+	   2ed4cf0..1b6a1cb  master -> master
+
+5)IL CONTRAIO SE HO MODIFICATO UN FILE E LO VOGLIO AGGIORNARE
+	
+	C:\GIT\primoprogetto> git pull
+	remote: Enumerating objects: 5, done.
+	remote: Counting objects: 100% (5/5), done.
+	remote: Compressing objects: 100% (3/3), done.
+	remote: Total 3 (delta 0), reused 0 (delta 0)
+	Unpacking objects: 100% (3/3), done.
+	From git.thebusinessgame.it:elena.arnone/primoprogetto
+	   1b6a1cb..7bc1c76  master     -> origin/master
+	Updating 1b6a1cb..7bc1c76
+	Fast-forward
+	 first.html | 1 +
+	 1 file changed, 1 insertion(+)
+	 
+6) RISOLVERE I CONFLITTI
+
+	C:\GIT\primoprogetto>git status
+	On branch master
+	Your branch is up to date with 'origin/master'.
+
+	Changes not staged for commit:
+	  (use "git add <file>..." to update what will be committed)
+	  (use "git checkout -- <file>..." to discard changes in working directory)
+
+			modified:   nicola.txt
+
+	no changes added to commit (use "git add" and/or "git commit -a")
+
+	C:\GIT\primoprogetto>git add nicola.txt
+
+	C:\GIT\primoprogetto>git status
+	On branch master
+	Your branch is up to date with 'origin/master'.
+
+	Changes to be committed:
+	  (use "git reset HEAD <file>..." to unstage)
+
+			modified:   nicola.txt
+
+
+	C:\GIT\primoprogetto>git commit -m nicola.txt
+	[master f4273b5] nicola.txt
+	 1 file changed, 1 insertion(+), 1 deletion(-)
+
+	C:\GIT\primoprogetto>git push
+	To git.thebusinessgame.it:elena.arnone/primoprogetto.git
+	 ! [rejected]        master -> master (fetch first)
+	error: failed to push some refs to 'git@git.thebusinessgame.it:elena.arnone/primoprogetto.git'
+	hint: Updates were rejected because the remote contains work that you do
+	hint: not have locally. This is usually caused by another repository pushing
+	hint: to the same ref. You may want to first integrate the remote changes
+	hint: (e.g., 'git pull ...') before pushing again.
+	hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+	C:\GIT\primoprogetto>git pull
+	remote: Enumerating objects: 5, done.
+	remote: Counting objects: 100% (5/5), done.
+	remote: Compressing objects: 100% (2/2), done.
+	remote: Total 3 (delta 1), reused 0 (delta 0)
+	Unpacking objects: 100% (3/3), done.
+	From git.thebusinessgame.it:elena.arnone/primoprogetto
+	   4e75a88..5ff3126  master     -> origin/master
+	Auto-merging nicola.txt
+	CONFLICT (content): Merge conflict in nicola.txt
+	Automatic merge failed; fix conflicts and then commit the result.
+
+	C:\GIT\primoprogetto>git status
+	On branch master
+	Your branch and 'origin/master' have diverged,
+	and have 1 and 1 different commits each, respectively.
+	  (use "git pull" to merge the remote branch into yours)
+
+	You have unmerged paths.
+	  (fix conflicts and run "git commit")
+	  (use "git merge --abort" to abort the merge)
+
+	Unmerged paths:
+	  (use "git add <file>..." to mark resolution)
+
+			both modified:   nicola.txt
+
+	no changes added to commit (use "git add" and/or "git commit -a")
+
+	C:\GIT\primoprogetto>git add nicola.txt
+
+	C:\GIT\primoprogetto>git commit -m merge
+	[master 9eb7018] merge
+
+	C:\GIT\primoprogetto>git push
+	Enumerating objects: 10, done.
+	Counting objects: 100% (10/10), done.
+	Delta compression using up to 4 threads
+	Compressing objects: 100% (4/4), done.
+	Writing objects: 100% (6/6), 528 bytes | 105.00 KiB/s, done.
+	Total 6 (delta 2), reused 0 (delta 0)
+	To git.thebusinessgame.it:elena.arnone/primoprogetto.git
+	   5ff3126..9eb7018  master -> master
+
+7) Per uscire da sbt
+Premere CTRL+D
+ 
+Branch git
+
+Per vedere l'elenco dei branch:
+git branch -a
+Per scaricare tutti i branch
+git fetch
+Per passare ad un nuovo branch collegato a quello online:
+git checkout -b migration remotes/origin/migration
+Eliminare il ramo:
+  git branch -d nomeBranch
+  Esempio: git branch -d feature
+
+8) dopo che fa git status, ti mostra i file che hai modificato se non li vuoi commitare tutti fai git add -i
+	poi update i file che vuoi aggiungere
+	dopo status
+	quit 
+	status
+
+9) git stash
+    con questo comando cancella tutte le modifiche
+	
+10) git checkout -- nome del file
+tornare alla versione precedente 
+
+11) creare un branch non presente online su gitlab 
+
+fai git status, assicurati di essere sul master
+	fai git checkout development
+	fai git status, assicurati di essere sul development
+	git checkout -b migrazione_play2.4
+	git status per vedere se sei sul branch
+
+al primo git push eseguire il comando scritto in console
+
+12) merge 
+git merge modifiche_meeting
+al primo git push eseguire il comando scritto in console
+
+13) fare un merge request locally e risolvere i conflitti
+checkout,review,and merge locally
+
+1 fare il git pull su development
+2 git fetch origin 
+3 git checkout development
+4 git merge --no-ff "branch da mergiare"
+5 risolvere i conflitti se ci sono
+6 git push origin "development"
+
+14) eliminare il branch
+git branch -D nome del branch
+
+15) modificare un commit non pushato
+git commit --amend -m "#530 nome"
+
+16) rinominare i file e ignorare case sensitve di windows
+git mv -f name.java Name.java
+
+17) git clone -b sta01 git@github.com:AlfonsoRapuano/azzeroco2.git .
+
+C:\GIT\azzeroco2\production>git clone -b production git@github.com:AlfonsoRapuano/azzeroco2.git .
+
+git clone --branch sta01 git@github.com:AlfonsoRapuano/uri-services.git .
+
+git https push HEAD:sta01 commit su odoo
