@@ -1,0 +1,37 @@
+AngularJS
+
+scaricare e installare NodeJS
+https://nodejs.org/it/
+Una volta installato Node.js abbiamo a disposizione npm, il package manager di Node.js che utilizziamo per installare Gulp e tutti i plugin di cui avremo bisogno. Procediamo quindi aprendo la nostra console (cmd.exe o “prompt comandi”), e digitiamo:
+
+  npm install gulp -g
+
+In questo modo, grazie alla opzione -g (global) potremo utilizzare gulp come comando autonomo da console.
+
+Ora possiamo creare una cartella per il nostro progetto ‘client‘ (o se già presente ci entriamo), ci spostiamo al suo interno e proviamo a digitare:
+
+gulp
+
+Otteniamo un errore “Local gulp not found” e un suggerimento: occorre installare una versione locale di gulp. Quindi procediamo:
+
+npm install 
+
+Node.js crea automaticamente la directory node_modules nella cartella del nostro progetto, dove inserirà tutti i plugin che istalleremo.
+
+Entrare nel client repository_software/client e scrivere:
+
+gulp  (fai partire il server dove è presnte il gioco)
+
+Digitare sul web l’indirizzo indicato e aggiungere /app/, ad esempio
+
+http://localhost:3000/app/
+
+
+procedura per far partire gulp dopo aver clonato un progetto
+
+dentro cartella client
+
+lanciare questo comando npm install
+
+infine gulp
+

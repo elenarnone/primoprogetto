@@ -1,0 +1,90 @@
+manytomany
+
+ @ManyToMany(cascade = CascadeType.ALL)
+    public List<Pluto> pluto = new ArrayList<Pluto>();
+ 
+ @ManyToMany(cascade = CascadeType.ALL)
+    public List<Pippo> pippo = new ArrayList<Pippo>(); 
+	
+	crea tabella di mezzo pippo_pluto con entrambe gli id
+	
+	n persone devono conoscere n lingue
+	
+public Result generatePippo(Http.Request request) throws ExecutionException, InterruptedException {
+        GenericRepository genericRepository = new GenericRepository(this.jpaApi, this.executionContext, Pippo.class);
+
+        DynamicForm dynamicForm = formFactory.form().bindFromRequest(request);
+
+        Pippo pippo = new Pippo();
+        if (pippo.id == null) {
+            pippo.name = dynamicForm.get("name");
+            pippo.lastname = dynamicForm.get("lastname");
+            pippo.email = dynamicForm.get("mail");
+            List<Pluto> languages = setLanguages(dynamicForm);
+            pippo.pluto.addAll(languages);
+            genericRepository.add(pippo);
+            log.info("pippo creato");
+        } else {
+            log.info("pippo non creato");
+        }
+        return Results.redirect(routes.GenericController.list());
+    }
+
+    private List<Pluto> setLanguages(DynamicForm dynamicForm) throws ExecutionException, InterruptedException {
+
+        GenericRepository geb = new GenericRepository(this.jpaApi, this.executionContext, Pluto.class);
+        List<Pluto> plutos = new ArrayList<Pluto>();
+        for (Pluto p : (List<Pluto>) geb.findAll().join()) {
+            log.info("id " + dynamicForm.get("lingus[" + p.id + "]"));
+            if (p.id.toString().equals(dynamicForm.get("lingus[" + p.id + "]"))) {
+                log.info("dentro");
+                Pluto pl = (Pluto) geb.findById(Long.valueOf(dynamicForm.get("lingus[" + p.id + "]"))).get();
+                plutos.add(pl);
+            }
+        }
+        log.error("size: " + plutos.size());
+        return plutos;
+    }
+	
+	 <div class="form-group">
+
+           <div class="custom-control custom-checkbox small">
+
+                @for(p <- elenco){
+                     <li><input type="checkbox" name="lingus[@p.id]" class="custom-control-input" id="@p.lingua" value="@p.id">
+                     <label class="custom-control-label" for="@p.lingua">@p.lingua</label></li>
+                                            }
+
+           </div>
+
+    </div>
+	
+	stampare il detail delle lingue per ogni pippo relazione n -> n senza mapping con tabella in mezzo 
+	
+	 public CompletableFuture<Result> detail(Long id) throws ExecutionException, InterruptedException {
+        GenericRepository genericRepository = new GenericRepository(this.jpaApi, this.executionContext, Pippo.class);
+        GenericRepository geb = new GenericRepository(this.jpaApi, this.executionContext, Pluto.class);
+        Pippo p = (Pippo) genericRepository.findById(id).get();
+        /*if(!p.pluto.isEmpty()) {
+            log.error("dentro è vuoto");
+            for (Pluto pluto : p.pluto) {
+                log.error("- " + pluto.lingua);
+            }
+        }*/
+
+        for (Pluto pluto : (List<Pluto>) geb.findAll().join()) {
+            if(pluto.id.toString().equals(id.toString())){
+                p.pluto.add(pluto);
+            }
+        }
+
+            log.error("plutolist " + p.pluto.isEmpty());
+           log.error("- " + p.id);
+
+
+
+
+
+
+        return CompletableFuture.supplyAsync(() -> Results.ok(detail.render(p)));
+    }

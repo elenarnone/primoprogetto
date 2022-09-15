@@ -1,0 +1,14 @@
+install
+ 
+npm i redoc-cli
+
+api locale run
+➜ npx redoc-cli serve swagger.yaml
+Server started: http://127.0.0.1:8080
+GET /: 42.262ms
+
+redoc-cli serve --watch  openapi.yaml
+
+--port 8888 per cambiare la porta
+
+https://www.npmjs.com/package/redoc-cli

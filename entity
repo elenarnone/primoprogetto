@@ -1,0 +1,19 @@
+relazione di entità
+
+ @OneToMany 1 -> n
+    public List<Pluto> pluto = new ArrayList<Pluto>();
+	
+	 @ManyToOne n -> 1
+    public Pluto pluto 
+	
+	 pippo.pluto = (Pluto) gr2.findById(Long.valueOf(dynamicForm.get("language"))).join();
+	
+@OneToOne 1 -> 1
+    public Pluto pluto 
+	
+@ManyToMany n -> n
+  @ManyToMany(cascade = CascadeType.ALL)
+    public List<Pluto> pluto = new ArrayList<Pluto>();
+ 
+ @ManyToMany(cascade = CascadeType.ALL)
+    public List<Pippo> pippo = new ArrayList<Pippo>(); 

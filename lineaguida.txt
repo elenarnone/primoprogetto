@@ -1,0 +1,119 @@
+C:\Users\elena>cd ..
+
+C:\Users>c ..
+"c" non è riconosciuto come comando interno o esterno,
+ un programma eseguibile o un file batch.
+
+C:\Users>cd ..
+
+C:\>CD GIT
+
+C:\GIT>git clone git@git.thebusinessgame.it:elena.arnone/primoprogetto.git primoprogetto
+Cloning into 'primoprogetto'...
+The authenticity of host 'git.thebusinessgame.it (51.68.27.105)' can't be established.
+ECDSA key fingerprint is SHA256:Af7gbmSsU14MugTdBzjRSiMh42Mq/BySQ6TAViItn1k.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'git.thebusinessgame.it,51.68.27.105' (ECDSA) to the list of known hosts.
+git@git.thebusinessgame.it's password:
+Permission denied, please try again.
+git@git.thebusinessgame.it's password:
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+C:\GIT>
+
+C:\GIT>
+
+C:\GIT>git clone git@git.thebusinessgame.it:elena.arnone/primoprogetto.git primoprogetto
+Cloning into 'primoprogetto'...
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 6 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (6/6), done.
+
+C:\GIT>git status
+fatal: not a git repository (or any of the parent directories): .git
+
+C:\GIT>cd primoprogetto
+
+C:\GIT\primoprogetto>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        first.html
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+C:\GIT\primoprogetto>git add first.html
+
+C:\GIT\primoprogetto>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   first.html
+
+
+C:\GIT\primoprogetto>git commit -m "paginahtml"
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'elena@ritamelew8ssd.(none)')
+
+C:\GIT\primoprogetto>  git config --global user.email "elena.arnone@thebusinessgame.it"
+
+C:\GIT\primoprogetto>git commit -m "paginahtml"
+[master 1b6a1cb] paginahtml
+ 1 file changed, 7 insertions(+)
+ create mode 100644 first.html
+
+C:\GIT\primoprogetto>git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+C:\GIT\primoprogetto>git push
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 320 bytes | 80.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To git.thebusinessgame.it:elena.arnone/primoprogetto.git
+   2ed4cf0..1b6a1cb  master -> master
+
+C:\GIT\primoprogetto> git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From git.thebusinessgame.it:elena.arnone/primoprogetto
+   1b6a1cb..7bc1c76  master     -> origin/master
+Updating 1b6a1cb..7bc1c76
+Fast-forward
+ first.html | 1 +
+ 1 file changed, 1 insertion(+)
+
+C:\GIT\primoprogetto>
+
+C:\GIT dir
+vedo la lista dei programmi

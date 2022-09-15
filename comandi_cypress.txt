@@ -1,0 +1,276 @@
+1) per far partire la dashboard di cypress 
+npm install
+npm install cypress
+npm install --save-dev cypress
+npx cypress open
+
+
+2) prima cosa che mi bisogna scrivere 
+
+context(' simulate the user interaction in discover', () => {
+
+   });
+   
+   nel context si scivere quello che dovrebbe fare il test ad esempio simulare il gioco in discover
+   
+3)
+it la funzione in js per fare i test per esempio it('dovrebbe mostrare l'homepage',() => {});
+
+it('should show the homepage', () => {
+      cy.visit('https://discover.tbg.ovh');
+   });
+   
+4) se l'azione che vogliamo andare a provare è visitare un pagina
+
+ cy.visit('https://discover.tbg.ovh');
+ 
+ 5)  se il test deve mostrare il titolo
+ 
+  it('should show the title', () => {
+       cy.get('h2').should('contain', 'ABB');
+   });
+   
+   cy.get() => oggetto che vuoi prendere in considirazione funziona come JQuery
+   .should('contain','ABB'); dovrebbe contenere abb se no va in errore
+   
+ 6) dovrebbe andare alla prima sezione e poi confermare se è andato li o no 
+ 
+ it('should go to the first section', () => {
+    cy.contains('Partiamo!').click(); (questo comando si utilizza per i bottoni)
+    cy.url().should('contain', 'section/100');  (questo comando prende in considirazione url e se url è giusto va abuon fine
+   });
+   
+   7) dovrebbe andare alla prima domanda
+   
+    it('should go to the first question', () =>{
+    cy.get('.btn').click();
+    cy.url().should('contain', 'section/100/question/110');
+   })
+   
+   è da sempre la conferma che è andato a buon fine
+   
+   8) Assert the checkbox is disabled
+cy.get(':checkbox').should('be.disabled')
+Assert the button is disabled
+cy.get(':button').should('be.disabled')
+   
+   9) Assert the checkbox is visable
+cy.get(':checkbox').should('be.visable')
+Assert the button is visable
+cy.get(':button').should('be.visable')
+
+10) it('should show a disabled button', () => {
+       // Controllare che il bottone sia disabilitato
+       cy.get(':button').contains('Conferma').should('be.disabled');
+   })
+   
+11)  it('should enable the button after an answer is select', () => {
+       //Test da scrivere
+        cy.get('.custom-control-label').parent().find('#radio-111').click({ force: true });
+        cy.get(':button').contains('Conferma').should('be.visible');
+   });
+12) per pulire il local storage
+
+cy.clearLocalStorage()
+
+13) make a login 
+
+cy.get('#email').type('elena.arnone@thebusinessgame.it');
+cy.get('#password').type('12345');
+cy.get('#submitlogin > span).click();
+CY.title().should('include', 'My account');
+
+fare un login passando variabili
+
+const username1 = '36213@hfactor.eu';
+const password1 = '1221147'; 
+
+ Cypress.Commands.add("login",(url) => {
+    //cy.visit('/');
+    //cy.get('Email').clear();
+
+    cy.visit('/')
+    cy.get('#username').type(username1);
+    cy.get('#password').type(password1);
+    cy.get('.btn').click();
+    //cy.get('#kc-accept').click();
+    cy.url().should('contain','main')
+    
+}) 
+
+
+13) per installare un versione aggiornata di cypress bisogna prima pulire la cache
+
+npx cypress cache clear
+e poi
+istallare la versione che vuoi
+
+npm install --save-dev cypress@6.9.1
+
+14) browser di chrome 
+npx cypress open --browser C:/User/App/browser.exe:chrome
+
+15) comando cy.session:
+
+	1. creare la session
+	2. salvare tutti i dati che vengono salvati nel tuo browser quando sei loggato
+	3. in modo che ogni volta che fai login qualcosa viene salvato nel browser e in questo modo il server sa chi sei
+	4. se si tratta coockie, local storage e session storage dovrebbe salvarlo
+
+cy.session si occupa principalmente di memorizzare i dati nel tuo browser quando sei loggato
+
+cy.session si occupa principalmente di memorizzare i dati nella cache, ripristinare l'archiviazione locale dei coockie e l'archiviazione della stessa sessione
+
+esempio di login con la session
+
+
+
+Cypress.Commands.add("login",(username2,password2) => {
+ 
+  cy.session([username2,password2], () => {
+    cy.visit('/');
+    //cy.log('username '+username+' password '+password)
+    cy.get('#username').clear();
+    cy.get('#username').type(username2);
+    cy.get('#password').clear();
+    cy.get('#password').type(password2);
+    cy.get('.btn').click({force: true});
+    cy.url().should('not.contain','/login')
+    
+  })  
+
+})
+
+esempio di come richiamare la session negli altri test
+
+	1) beforeEach(() => {
+        cy.login('40148@hfactor.eu','123');
+        //cy.visit('/privacy');
+    })
+	
+	2) it('should check if the privacy gdpr has been accepted', () => {
+        cy.visit('/'); mettendo all'inizio del test questo metodo cypress si ricorda che sei loggato
+    });
+
+
+
+esempio di richiamo dei comandi scritti nel file di test 
+
+context('simulate user interaction with session login', () => {
+
+    it('should login with session', () => {
+        //cy.visit('https://dev1.tbg.ovh/index.html#!/login');
+        //cy.visit('/');
+        cy.loginWithSession('36213@hfactor.eu','1221147');
+        cy.loginWithSession('36214@hfactor.eu','4178015');
+    });
+
+});
+
+
+/* context('simulate user interaction without session login', () => {
+
+    it('should login without session', () => {
+        //cy.visit('https://dev1.tbg.ovh/index.html#!/login');
+        //cy.visit('/');
+        cy.login();
+    });
+
+}); */
+
+esempio di login con le api con la session
+
+	Cypress.Commands.add("loginAccess",(username2,password2) => {
+	  cy.session([username2,password2], () => {
+		cy.request({
+		  method: 'POST',
+		  url: 'http://localhost:9000/api/user/login',
+		  form: true,
+		  body: {
+			username: username2,
+			password: password2,
+		  }
+		}).then((response) => {
+		  //cy.log(JSON.stringify(response.body));
+		  if(response.body.hasOwnProperty('expired')){
+			//cy.log("non entrato");
+			expect(response.body).to.have.property('expired', false);
+		  }else{
+			//cy.log("entrato");
+			expect(response.body).to.have.property('valid', true);
+		  }
+		})
+		
+	  })  
+
+	})
+
+16) creare il Drag & Drop in cypress utilizzando app Angularjs
+
+	1) creare un nuovo commando in cypress
+
+		
+		Cypress.Commands.add("dragTo", { prevSubject: 'element'}, (dragSelector, dropSelector) => { 
+
+			function DndSimulatorDataTransfer() {
+			  this.data = {}
+		  }
+
+		  DndSimulatorDataTransfer.prototype.dropEffect = "move"
+		  DndSimulatorDataTransfer.prototype.effectAllowed = "all"
+		  DndSimulatorDataTransfer.prototype.files = []
+		  DndSimulatorDataTransfer.prototype.items = []
+		  DndSimulatorDataTransfer.prototype.types = []
+
+		  DndSimulatorDataTransfer.prototype.clearData = function (format) {
+			  if (format) {
+				  delete this.data[format]
+
+				  const index = this.types.indexOf(format)
+				  delete this.types[index]
+				  delete this.data[index]
+			  } else {
+				  this.data = {}
+			  }
+		  }
+
+		  DndSimulatorDataTransfer.prototype.setData = function (format, data) {
+			  this.data[format] = data
+			  this.items.push(data)
+			  this.types.push(format)
+		  }
+
+		  DndSimulatorDataTransfer.prototype.getData = function (format) {
+			  if (format in this.data) {
+				  return this.data[format]
+			  }
+
+			  return ""
+		  }
+
+		  const dataTransfer = new DndSimulatorDataTransfer();
+
+		  cy.get(dragSelector).trigger('dragstart',{dataTransfer});
+		  cy.get(dropSelector).trigger('dragover',{dataTransfer});
+		  cy.get(dropSelector).trigger('drop',{dataTransfer});
+		  cy.get(dragSelector).trigger('dragend',{force: true});
+
+		})
+		
+	2) nel test che andate a scrivere dove scrivere così
+
+			es: sto spostando Nuoto sotto a Automobilismo
+			
+			cy.get('.dragList > .list-group > :nth-child(2)').should('contain','Nuoto');
+			cy.get('.dragList > .list-group > :nth-child(4)').should('contain','Automobilismo');
+			cy.get('.dragList > .list-group > :nth-child(2)').dragTo('.dragList > .list-group > :nth-child(4)');
+			cy.get('.dragList > .list-group > :nth-child(4)').should('contain','Nuoto');
+
+17) only and skip
+
+	describe.only() tutte i test sutie al suo interno vengono eseguiti
+	it.only solo questo single test suite viene eseguito
+	
+	describe.skip() tutti i test sutie al suon interno viene saltato e viene contrassegnato in sospeso
+	it.skip  solo questo single test suite viene contrassegnato in sospeso
+	

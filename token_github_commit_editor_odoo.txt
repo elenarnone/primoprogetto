@@ -1,0 +1,14 @@
+token github commit editor odoo
+
+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
+
+
+github password ssh
+
+sonolaRoma1995!
+
+https://git-scm.com/docs/git-statu
+
+come rimuovere password ssh key
+
+https://stackoverflow.com/questions/112396/how-do-i-remove-the-passphrase-for-the-ssh-key-without-having-to-create-a-new-ke

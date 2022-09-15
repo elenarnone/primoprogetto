@@ -1,0 +1,8 @@
+QUESTA RIGA PERMETTE DI VEDERE I LOGGER IN LOCALE CON LE DATE E ORARIO ACCANTO
+
+<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <!--<pattern>%coloredLevel %logger{15} - %message%n%xException{5}</pattern>-->
+      <pattern>%date %-6coloredLevel - %message%n%xException{5}</pattern>
+    </encoder>
+  </appender>

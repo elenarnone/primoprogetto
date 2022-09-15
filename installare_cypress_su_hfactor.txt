@@ -1,0 +1,205 @@
+cypress versione 4.11 e 4.12 lavora con edge and firefox (nodejs 10) zero errori
+cypress version 5.0.0 lavora sempre con edge firefox e electron (nodejs 10) zero errori
+
+C:\GIT\idea\cypress>npm install --save-dev cypress@5.0.0
+npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+
+> cypress@5.0.0 postinstall C:\GIT\idea\cypress\node_modules\cypress
+> node index.js --exec install
+
+Installing Cypress (version: 5.0.0)
+
+  √  Downloaded Cypress
+  √  Unzipped Cypress
+  √  Finished Installation C:\Users\elena\AppData\Local\Cypress\Cache\5.0.0
+
+You can now open Cypress by running: node_modules\.bin\cypress open
+
+https://on.cypress.io/installing-cypress
+
+npm WARN cypress No description
+npm WARN cypress No repository field.
+npm WARN cypress No license field.
+
++ cypress@5.0.0.
+added 18 packages from 8 contributors, removed 5 packages, updated 27 packages, moved 1 package and audited 216 packages in 472.564s
+found 0 vulnerabilities
+
+
+C:\GIT\idea\cypress> npx cypress open
+It looks like this is your first time using Cypress: 5.0.0
+
+  √  Verified Cypress! C:\Users\elena\AppData\Local\Cypress\Cache\5.0.0\Cypress
+
+Opening Cypress...
+
+cypress version 8.3.1 lavora con firefox,edge and chrome (lavora con nodejs 10 anche se nello install da un error)
+
+
+C:\GIT\idea\cypress\cypress>npm install --save-dev cypress@8.3.0
+npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+
+> cypress@8.3.0 postinstall C:\GIT\idea\cypress\node_modules\cypress
+> node index.js --exec install
+
+(node:25856) ExperimentalWarning: The fs.promises API is experimental
+Installing Cypress (version: 8.3.0)
+
+✔  Downloaded Cypress
+✔  Unzipped Cypress
+✔  Finished Installation C:\Users\elena\AppData\Local\Cypress\Cache\8.3.0
+
+You can now open Cypress by running: node_modules\.bin\cypress open
+
+https://on.cypress.io/installing-cypress
+
+npm WARN cypress No description
+npm WARN cypress No repository field.
+npm WARN cypress No license field.
+
++ cypress@8.3.0
+added 15 packages from 53 contributors, removed 61 packages, updated 24 packages and audited 170 packages in 114.179s
+found 0 vulnerabilities
+
+
+C:\GIT\idea\cypress\cypress>npx cypress open
+It looks like this is your first time using Cypress: 8.3.0
+
+✔  Verified Cypress! C:\Users\elena\AppData\Local\Cypress\Cache\8.3.0\Cypress
+
+Opening Cypress...
+
+
+installato versione 5.6.0 compatibile con nodejs 10 e lavora con  edge firefox, electron e chrome 
+
+
+(Cypress comes bundled with its own Node.js version. However, installing the cypress npm package uses the Node.js version installed on your system.
+Node.js 8 reached its end of life on Dec 31, 2019 and Node.js 11 reached its end of life on June 1, 2019. See Node's release schedule.
+ These Node.js versions will no longer be supported when installing Cypress.
+ The minimum Node.js version supported to install Cypress is Node.js 10 or Node.js 12+.)
+ 
+ https://docs.cypress.io/guides/references/changelog#5-6-0
+ 
+ context(' simulate the first test in hfactor', () => {
+
+    it('should show the page login', () => {
+        cy.visit('https://dev1.tbg.ovh/index.html#!/login');
+    });
+
+});
+
+installare versione di cypress 6.1.0
+
+C:\GIT\idea>cd testCypress
+
+C:\GIT\idea\testCypress>npm install --save-dev cypress@6.1.0
+npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+Terminare il processo batch (S/N)? s
+
+C:\GIT\idea\testCypress>npm install --save-dev cypress@6.1.0
+npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+
+> cypress@6.1.0 postinstall C:\GIT\idea\testCypress\node_modules\cypress
+> node index.js --exec install
+
+Installing Cypress (version: 6.1.0)
+
+  √  Downloaded Cypress
+  √  Unzipped Cypress
+  √  Finished Installation C:\Users\elena\AppData\Local\Cypress\Cache\6.1.0
+
+You can now open Cypress by running: node_modules\.bin\cypress open
+
+https://on.cypress.io/installing-cypress
+
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN testCypress No description
+npm WARN testCypress No repository field.
+npm WARN testCypress No license field.
+
++ cypress@6.1.0
+added 216 packages from 141 contributors and audited 216 packages in 1278.076s
+found 0 vulnerabilities
+
+
+C:\GIT\idea\testCypress>
+C:\GIT\idea\testCypress>npx cypress open
+It looks like this is your first time using Cypress: 6.1.0
+
+  √  Verified Cypress! C:\Users\elena\AppData\Local\Cypress\Cache\6.1.0\Cypress
+
+Opening Cypress...
+
+installare versione di cypress 6.2.1
+
+C:\GIT\idea\cypress>npm install --save-dev cypress@6.2.1
+npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+
+> cypress@6.2.1 postinstall C:\GIT\idea\cypress\node_modules\cypress
+> node index.js --exec install
+
+Installing Cypress (version: 6.2.1)
+
+  √  Downloaded Cypress
+  √  Unzipped Cypress
+  √  Finished Installation C:\Users\elena\AppData\Local\Cypress\Cache\6.2.1
+
+You can now open Cypress by running: node_modules\.bin\cypress open
+
+https://on.cypress.io/installing-cypress
+
+npm WARN cypress No description
+npm WARN cypress No repository field.
+npm WARN cypress No license field.
+
++ cypress@6.2.1
+updated 1 package and audited 216 packages in 235.087s
+found 0 vulnerabilities
+
+
+C:\GIT\idea\cypress>npx cypress open
+It looks like this is your first time using Cypress: 6.2.1
+
+  √  Verified Cypress! C:\Users\elena\AppData\Local\Cypress\Cache\6.2.1\Cypress
+
+Opening Cypress...
+
+installare la versione 6.4.0
+
+
+installa versione di cypress 8.2.0
+
+per poter utilizzare queste funzione cy.session
+
+C:\GIT\idea\cypress>npm install --save-dev cypress@8.2.0
+npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+
+> cypress@8.2.0 postinstall C:\GIT\idea\cypress\node_modules\cypress
+> node index.js --exec install
+
+(node:40852) ExperimentalWarning: The fs.promises API is experimental
+Installing Cypress (version: 8.2.0)
+
+√  Downloaded Cypress
+√  Unzipped Cypress
+√  Finished Installation C:\Users\elena\AppData\Local\Cypress\Cache\8.2.0
+
+You can now open Cypress by running: node_modules\.bin\cypress open
+
+https://on.cypress.io/installing-cypress
+
+npm WARN cypress No description
+npm WARN cypress No repository field.
+npm WARN cypress No license field.
+
++ cypress@8.2.0
+updated 1 package and audited 170 packages in 101.981s
+found 0 vulnerabilities
+
+
+C:\GIT\idea\cypress>npx cypress open
+It looks like this is your first time using Cypress: 8.2.0
+
+√  Verified Cypress! C:\Users\elena\AppData\Local\Cypress\Cache\8.2.0\Cypress
+
+Opening Cypress...

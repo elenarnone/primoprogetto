@@ -1,0 +1,18 @@
+ Comando per creare un db:
+
+create database seed;
+
+Comando per creare un utente:
+
+create user seed@localhost identified by "seed";
+
+
+comando per autorizzare un utente ad accedere ad un db:
+    
+grant all privilegies on seed.* to seed@localhost identified by "seed";
+
+Come utilizzare mysql 8
+aggiungere in application.conf, nella riga dell link del database questo parametro
+zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC
+Modificare il Bulid.sbt, passando dal mysql-connector-java 5.1.30 al mysql-connector-java 8.0.17
+ 
